@@ -22,7 +22,7 @@
         async function fetchDogs() {
             try {
                 // Fetch all dogs from the API
-                const response = await axios.get("http://127.0.0.1:8000/dogs"); 
+                const response = await axios.get("https://render-fastapi-img.onrender.com/dogs");
                 const dogs = response.data; // List of dogs returned from API
                 const dogListDiv = document.getElementById("dog-list");
                 dogListDiv.innerHTML = ""; // Clear any previous dog data
@@ -34,7 +34,7 @@
                         <h3>${dog.name}</h3>
                         <p>Breed: ${dog.breed}</p>
                         <p>Color: ${dog.color}</p>
-                        <img src="http://127.0.0.1:8000${dog.photo}" alt="${dog.name}" width="200"><br><br>
+                        <img src="https://render-fastapi-img.onrender.com${dog.photo}" alt="${dog.name}" width="200"><br><br>
                     `;
                     dogListDiv.appendChild(dogDiv);
                 });

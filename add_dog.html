@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add a New Dog</h1>
-    <form action="http://127.0.0.1:8000/" method="POST" enctype="multipart/form-data">
+    <form id="add-dog-form" action="https://render-fastapi-img.onrender.com/" method="POST" enctype="multipart/form-data">
         <label for="name">Dog Name:</label><br>
         <input type="text" id="name" name="name" required><br>
 
@@ -27,30 +27,29 @@
     <a href="index.html">View All Dogs</a> <!-- Link to View All Dogs Page -->
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
+<script>
+    document.getElementById("add-dog-form").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append("name", document.getElementById("name").value);
+        formData.append("breed", document.getElementById("breed").value);
+        formData.append("color", document.getElementById("color").value);
+        formData.append("file", document.getElementById("file").files[0]);
 
-    <script>
-        document.getElementById("add-dog-form").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData();
-            formData.append("name", document.getElementById("name").value);
-            formData.append("breed", document.getElementById("breed").value);
-            formData.append("color", document.getElementById("color").value);
-            formData.append("file", document.getElementById("photo").files[0]);
-
-            try {
-                const response = await axios.post("http://127.0.0.1:8000/", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                });
-                alert("Dog added successfully!");
-                document.getElementById("add-dog-form").reset();
-            } catch (error) {
-                console.error("Error adding dog:", error);
-                alert("Failed to add dog.");
-            }
-        });
-    </script>
-</body>
+        try {
+            const response = await axios.post("https://render-fastapi-img.onrender.com/", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            alert("Dog added successfully!");
+            document.getElementById("add-dog-form").reset();
+        } catch (error) {
+            console.error("Error adding dog:", error);
+            alert("Failed to add dog.");
+        }
+    });
+</script>
 </html>
